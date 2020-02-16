@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
         {
             // Entering this branch assumes that move is valid.
 
-            char[,] currentGrid = grid.getGrid();
+            Tile[,] currentGrid = grid.getGrid();
             
             // Test if valid move
             for (int i = 1; i < followers.Count; i++)
@@ -104,5 +104,6 @@ public class GameManager : MonoBehaviour
         print(dir);
         return dir;
     }
+
 
 }

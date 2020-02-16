@@ -23,8 +23,8 @@ public class Overworld : MonoBehaviour
                 gridworld[i, j] = '0';
             }
         }
-        gridworld[GameManager.playerAt.x, GameManager.playerAt.y] = 'c';
-        for (int i = 0; i < GameManager.followers.Count(); i++)
+        gridworld[GameManager.playerStart.x, GameManager.playerStart.y] = 'c';
+        for (int i = 1; i < GameManager.followers.Count(); i++)
         {
             gridworld[GameManager.followers[i].position.x, GameManager.followers[i].position.y] = 'f';
         }
@@ -53,7 +53,7 @@ public class Overworld : MonoBehaviour
 
     public bool Move((int x, int y) prev, (int x, int y) current, char character)
     {
-        if (gridworld[current.x, current.y] == '0')
+        if (TileOccupied(current))
         {
             gridworld[prev.x, prev.y] = '0';
             gridworld[current.x, current.y] = character;
@@ -72,5 +72,11 @@ public class Overworld : MonoBehaviour
 
     public char[,] getGrid() {
         return gridworld;
+    }
+
+    // Returns whether or not coords is occupied
+    public bool TileOccupied((int x, int y) coords)
+    {
+        return gridworld[coords.x, coords.y] == '0';
     }
 }
